@@ -1,2 +1,2 @@
 # climate-health-forecast
-A data-driven Bayesian spatiotemporal framework to improve short-term influenza forecasting across Australian states and territories by incorporating climate information.
+This repository makes available the source code for the manuscript: "Climate-informed short-term forecasting of influenza incidence in Australia". The computation concerns model fits,  forecast validations and plotting of 4  Bayesian spatiotemporal models. The computation is performed using Integrated Laplace Approximation (INLA) method. All model fits are implemented using the R software and data cleaning and some plotting was conducted using python software.
