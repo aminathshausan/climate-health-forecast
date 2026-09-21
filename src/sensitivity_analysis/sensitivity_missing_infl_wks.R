@@ -8,12 +8,12 @@
 ###############################
 
 
-.libPaths("/Users/aminath/r-libraries")
+.libPaths("<PUT PATH TO FOLDER>")
 
 options(digits=10)
 rm(list = ls())
 set.seed(963258)
-#control.compute=list(save.memory=TRUE)
+
 
 ### load required libraries
 # library(sf)
@@ -23,9 +23,6 @@ library(ggplot2)
 library(INLA)
 ########
 
-
-## load required data
-# source("./src/00_data_preprocess.R")
 
 ###########################
 ## Read and preprocess data

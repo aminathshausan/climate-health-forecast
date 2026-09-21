@@ -91,7 +91,7 @@ load('./results/optimal_model_fit.RData')
 
 rm(data.req2)
 data.req2 <- data.req %>%
-  filter(year >= 2013) ## change year from 2008(10yrs of historic data) to 20017(1yrs of historic)
+  filter(year >= 2013) ## 
 print(unique(data.req2$year))
 
 data.req2 <- data.req2 %>%
@@ -174,8 +174,6 @@ RR_tas_effect <-
   geom_line(aes(x = ID, y = RR_mean), col = "black") +
   geom_hline(yintercept = 1, linetype = "dashed", color = "grey9") +
   labs(x="Temperature (°C)", y = "Relative risk") +
-  # theme(panel.grid.major = element_line(colour = gray(0.5), linetype = "dashed",
-  #                                       linewidth  = 0.1),panel.background = element_blank() )+ 
   theme(panel.background = element_blank() )+
   scale_y_continuous() +
   scale_x_continuous() +
@@ -191,9 +189,7 @@ RR_tasLag1_effect <-
   geom_line(aes(x = ID, y = RR_mean), col = "black") +
   geom_hline(yintercept = 1, linetype = "dashed", color = "grey9") +
   labs(x="Temperature (°C)", y = "Relative risk") +
-  # theme(panel.grid.major = element_line(colour = gray(0.5), linetype = "dashed",
-  #                                       linewidth  = 0.1),panel.background = element_blank() )+ 
-  theme(panel.background = element_blank() )+
+    theme(panel.background = element_blank() )+
   scale_y_continuous() +
   scale_x_continuous() +
   theme_bw()  

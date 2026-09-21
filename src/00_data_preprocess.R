@@ -1,24 +1,14 @@
 # Author: Dr Aminath Shausan 
 
 ####################################
-#this program fits a Bayesian GLMM with a spatial random effect to influenza incidences 
-#. using Distributed Lag Nonlinear Model
-## there are 7 regions , assume each region has its independent trend
-## time frame is months starting from  March 2008 to Dec 2022 (excluding 2020-2021)
-#lags1 is included for observed data in each region, hence data for 2008 starts from Feb 
-# assuming incidences follow either a negative binomial model
-# assume independent Gaussian process for the spatial random effect priors  
-# include fixed effects (i.e  covariates are considered)
-# Perform 1, 2, 12-step-ahead cross validations with sliding window, starting from Jan 2016
-## model fitting code is adapted from:  https://github.com/gasparrini/hydromet_dengue/tree/main
+#this program  pre-processes data
 ###############################
 
-.libPaths("/Users/aminath/r-libraries")
+.libPaths(<PUT PATH TO DIRECTORY>)
 
 options(digits=10)
 rm(list = ls())
 set.seed(963258)
-#control.compute=list(save.memory=TRUE)
 
 ### load required libraries
 library(sf)
@@ -27,21 +17,6 @@ library(dplyr)
 library(ggplot2)
 library(INLA)
 ########
-# 
-# library(INLA)
-# library(dplyr)
-# library(data.table)
-# library(tidyverse)
-# library(sf)
-# library(sp)
-# library(spdep)
-# library(RColorBrewer)
-# library(geofacet)
-# library(ggpubr)
-# library(ggthemes)
-# library(viridis)
-# #library(tmap)
-# library(ggplot2)
 
 ####################################
 ## load required cleaned data
@@ -57,7 +32,7 @@ map <- map %>%
   select(STE_CODE21, STE_NAME21, geometry)
 
 ## load the combined influenza and climate data  
-data<- read.csv('./data/pathogen/combinedInflClimate.csv') ## data for 2008 - 2022; 7 states
+data<- read.csv('./data/pathogen/combinedInflClimate.csv') ## 
 unique(data$year)
 data$date <- as.Date(data$date, "%Y-%m-%d")
 ## drop covid period (2020 to 2021)  
@@ -104,12 +79,11 @@ fit_model <- function(formula, data = df, family = "poisson", config = FALSE)
                 control.inla = list(strategy = 'adaptive'), 
                 control.compute = list(dic = TRUE, waic=TRUE, config = config, 
                                        cpo = TRUE, return.marginals = FALSE),
-                control.fixed = list(correlation.matrix = FALSE, #TRUE, 
+                control.fixed = list(correlation.matrix = FALSE, # 
                                      prec.intercept = 1, prec = 1),
                 control.predictor = list(link = 1, compute = TRUE), 
                 #num.threads = 8,
                 verbose = FALSE)
-  #model <- inla.rerun(model)
   return(model)
 }
 

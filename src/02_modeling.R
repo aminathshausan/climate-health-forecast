@@ -48,8 +48,6 @@ str(data.model)
 ########################################################
 # M0: baseline model 
 f.m0 <- obs ~ 1 + #log(obsLag1)+
-  # f(month, replicate = ID.region, model = "rw1", cyclic = TRUE, constr = TRUE, ##
-  #       scale.model = TRUE,  hyper = precision.prior) +
   f(ID.time, replicate = ID.region, model = "ar1",constr = TRUE, ##
     hyper = precision.prior) +
   f(ID.region, model = "iid", constr = TRUE,
@@ -164,10 +162,8 @@ print(end.train.indx)
 # use 1:25 origins 
 for(i in 1:25) {
   
-  ##i= 1 ## 
   rm(origin) 
-  origin <- i ##change  
-  # print('---origin---', origin)
+  origin <- i #  
   print(sprintf("--- origin--: %d", origin))
   
   for(h in 1:12){

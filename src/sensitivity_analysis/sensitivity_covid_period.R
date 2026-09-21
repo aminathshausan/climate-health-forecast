@@ -86,11 +86,6 @@ getFldData = function(df, fld, nstep){
   return(data.train)
 }
 # 
-# origin <- 4
-# fld <- origin
-# nstep <-12
-# rm(data.valid)
-# data.valid <- getFldData(fld = origin, nstep = nstep) 
 
 ## step 2: Define a function to get data for the required historic period  
 getHistData = function(start_hist_year){

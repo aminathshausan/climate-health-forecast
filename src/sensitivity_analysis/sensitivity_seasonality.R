@@ -82,11 +82,6 @@ getFldData = function(df, fld, nstep){
   return(data.train)
 }
 # 
-# origin <- 4
-# fld <- origin
-# nstep <-12
-# rm(data.valid)
-# data.valid <- getFldData(fld = origin, nstep = nstep) 
 
 ## step 2: Define a function to get data for the required historic period  
 getHistData = function(start_hist_year){
@@ -145,15 +140,7 @@ for(i in 1:13) {
     rm(data.valid)
     data.valid <- getFldData(fld = origin, nstep = nstep) ### change this according to number of steps to predict
     
-  # ### for sliding window, re-define time index
-  # data.valid <- data.valid %>%
-  #   group_by(state) %>%
-  #   arrange(date) %>%
-  #   mutate(ID.time = as.numeric(row_number())
-  #   ) %>%
-  #   ungroup() %>%
-  #   as.data.frame()
-  
+
     rm(mdl)
     ## fit model
     mdl <- fit_model(formula = f.m2, data = data.valid, family = "poisson") ##"
